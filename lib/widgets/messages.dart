@@ -35,6 +35,7 @@ class Messages extends StatelessWidget {
                       : false,
                   Key: ValueKey(chatDocs[index].documentID),
                   userName: chatDocs[index]['username'],
+                  imageUrl: chatDocs[index]['imageUrl'],
                 );
               });
         });

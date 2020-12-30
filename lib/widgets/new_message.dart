@@ -19,7 +19,8 @@ class _NewMessageState extends State<NewMessage> {
 //storing a message with a timeStamp to maintain the order of message while recieving it
   void _sendMessage() async {
     loggedInUser = _auth.currentUser;
-    final userData = FocusScope.of(context).unfocus();
+    FocusScope.of(context).unfocus();
+    //return the user document haviing the id as current logged in userId
     userDoc = await _firestore.collection('users').doc(loggedInUser.uid).get();
     if (newMessageController.text.isEmpty) {
       return;
@@ -28,7 +29,8 @@ class _NewMessageState extends State<NewMessage> {
       'text': newMessageController.text,
       'createdAt': Timestamp.now(),
       'userId': loggedInUser.uid,
-      'username': userDoc['username']
+      'username': userDoc['username'],
+      'imageUrl': userDoc['imageUrl'],
     });
 
     newMessageController.clear();
